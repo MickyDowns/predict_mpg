@@ -1,0 +1,16 @@
+{
+    "contents" : "\n# This is the server logic for a Shiny web application.\n# You can find out more about building applications with Shiny here:\n#\n# http://shiny.rstudio.com\n#\n\nlibrary(shiny)\n\ndata=mtcars;mtcars$am=as.factor(mtcars$am);mtcars$vs=as.factor(mtcars$vs)\n\nprediction <- function(car.choice,predictors) {\n     dat=mtcars[-c(which(rownames(mtcars)==car.choice)),c(1,as.integer(predictors))]\n     fit=lm(mpg~.,data=dat)\n     predict(fit,mtcars[which(rownames(mtcars)==car.choice),\n                        c(1,as.integer(predictors))])\n}\n\nactual <- function(car.choice) {\n     mtcars$mpg[which(rownames(mtcars)==car.choice)]\n}\nshinyServer( \n     function(input, output) {\n          output$car.choice <- renderPrint({input$car.choice})\n          output$predictors <- renderPrint({input$predictors})\n          output$mpg.est <- renderPrint({input$mpg.est})\n          output$predicted <- renderPrint({\n               if(input$goButton==0) \"<<<---select car and predictors\"\n               else prediction(input$car.choice,input$predictors)\n          })\n          output$actual <- renderPrint({\n               if(input$goButton==0) \"<<<---select car and predictors\"\n               else actual(input$car.choice)\n          })\n     }\n)",
+    "created" : 1430007885254.000,
+    "dirty" : false,
+    "encoding" : "UTF-8",
+    "folds" : "",
+    "hash" : "4153187013",
+    "id" : "35B0A0FF",
+    "lastKnownWriteTime" : 1430008013,
+    "path" : "~/Documents/Pers/Ed/Courses/JH8 - developing data products/estimate_mpg/server.R",
+    "project_path" : "server.R",
+    "properties" : {
+    },
+    "source_on_save" : false,
+    "type" : "r_source"
+}

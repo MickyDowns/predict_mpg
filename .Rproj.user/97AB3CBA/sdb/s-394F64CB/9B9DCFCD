@@ -1,0 +1,16 @@
+{
+    "contents" : "\n# This is the user-interface definition of a Shiny web application.\n# You can find out more about building applications with Shiny here:\n#\n# http://shiny.rstudio.com\n#\n\nlibrary(shiny)\nshinyUI( pageWithSidebar(\n     headerPanel(\"MPG prediction\"),\n     sidebarPanel(\n          selectInput(\"car.choice\", label = \"1. select a car\", \n                      choices = list(\"AMC Javelin\"=\"AMC Javelin\",\n                                     \"Cadillac Fleetwood\"=\"Cadillac Fleetwood\",\n                                     \"Ferrari Dino\"=\"Ferrari Dino\",\n                                     \"Honda Civic\"=\"Honda Civic\",\n                                     \"Hornet Sportabout\"=\"Hornet Sportabout\",\n                                     \"Mazda RX4\"=\"Mazda RX4\",\n                                     \"Merc 450SL\"=\"Merc 450SL\",\n                                     \"Pontiac Firebird\"=\"Pontiac Firebird\",\n                                     \"Toyota Corolla\"=\"Toyota Corolla\",\n                                     \"Valiant\"=\"Valiant\"), selected = 1),\n          \n          checkboxGroupInput(\"predictors\", \"2. select your predictors\",\n                             c(\"cyl\" = 2, \"disp\" = 3, \"hp\" = 4, \"drat\" = 5, \n                               \"wt\" = 6, \"qsec\" = 7, \"vs\" = 8, \"am\" = 9, \n                               \"gear\" = 10,\"carb\" = 11)),\n          \n          sliderInput('mpg.est', '3. estimate the mpg',value = 20, \n                      min = 1, max = 40, step = 1,),\n          \n          actionButton(\"goButton\", \"Go!\")\n     ), \n     mainPanel(\n          h3('Here are your results'),\n          h4('Your car'), \n          verbatimTextOutput(\"car.choice\"),\n          h4('Your predictors'), \n          verbatimTextOutput(\"predictors\"),\n          h4('Your estimate'), \n          verbatimTextOutput(\"mpg.est\"), \n          h4('The predicted mpg was'), \n          verbatimTextOutput(\"predicted\"),\n          h4('The actual mpg was'), \n          verbatimTextOutput(\"actual\")\n     ))\n)\n",
+    "created" : 1430007885086.000,
+    "dirty" : false,
+    "encoding" : "UTF-8",
+    "folds" : "",
+    "hash" : "4228341579",
+    "id" : "9B9DCFCD",
+    "lastKnownWriteTime" : 1430008015,
+    "path" : "~/Documents/Pers/Ed/Courses/JH8 - developing data products/estimate_mpg/ui.R",
+    "project_path" : "ui.R",
+    "properties" : {
+    },
+    "source_on_save" : false,
+    "type" : "r_source"
+}
